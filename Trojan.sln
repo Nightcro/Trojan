@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trojan", "Trojan\Trojan.csproj", "{39B890C9-E40A-4CBB-8C52-2A5697024A11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaUpdateController", "Trojan\JavaUpdateController.csproj", "{39B890C9-E40A-4CBB-8C52-2A5697024A11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
